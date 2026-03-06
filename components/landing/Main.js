@@ -76,8 +76,8 @@ export default function Main({ tariffs = [], timerEnded = false }) {
             />
           </div>
 
-          {/* Right content: side margins on mobile, full width on desktop */}
-          <div className="w-full lg:w-2/3 flex flex-col gap-4 sm:gap-6 min-w-0 mx-3 md:mx-0">
+          {/* Right content: align with page left edge (no extra margin) */}
+          <div className="w-full lg:w-2/3 flex flex-col gap-4 sm:gap-6 min-w-0">
 
             {!featuredTariff && listTariffs.length === 0 && (
               <div className="rounded-3xl bg-[#2F3436] border border-[#484D4E] px-8 py-12 text-center">
@@ -136,54 +136,55 @@ export default function Main({ tariffs = [], timerEnded = false }) {
             </div>
 
             {/* Checkbox */}
-            <label className="flex items-start gap-3 cursor-pointer select-none w-full">
-              <input
-                type="checkbox"
-                className="peer sr-only"
-                checked={agreed}
-                onChange={(e) => {
-                  setAgreed(e.target.checked);
-                  setCheckboxError(false);
-                }}
-              />
-              <div
-                className={`w-[24px] h-[24px] border rounded-sm flex items-center justify-center flex-shrink-0 peer-checked:[&>svg]:opacity-100 ${checkboxError ? "border-red-500 bg-red-500/10" : "border-gray-400"
-                  }`}
-              >
-                <svg
-                  className="w-[20px] h-[24px] text-[#FDB056] opacity-0 transition "
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                >
-                  <polyline points="20 6 9 17 4 12" />
-                </svg>
-              </div>
-             
-                  <p className="text-sm md:text-base text-[#9AA0A6] leading-snug">
-                    Я согласен(а) с{" "}
-                    <Link
-                      href="/offer"
-                      className="text-gray-300 underline underline-offset-2"
-                    >
-                      офертой рекуррентных платежей
-                    </Link>{" "}
-                    и{" "}
-                    <Link
-                      href="/privacy"
-                      className="text-gray-300 underline underline-offset-2"
-                    >
-                      Политикой конфиденциальности
-                    </Link>
-                    .
-                  </p>
+            <label className="flex items-center gap-3 cursor-pointer select-none w-full mt-4 sm:mt-10">
+                  <input
+                    type="checkbox"
+                    className="peer sr-only"
+                    checked={agreed}
+                    onChange={(e) => {
+                      setAgreed(e.target.checked);
+                      setCheckboxError(false);
+                    }}
+                  />
 
-            </label>
+                <div
+                  className={`w-[24px] h-[24px] border rounded-sm flex items-center justify-center flex-shrink-0 peer-checked:[&>svg]:opacity-100 ${
+                    checkboxError ? "border-red-500 bg-red-500/10" : "border-gray-400"
+                  }`}
+                >
+                  <svg
+                    className="w-[20px] h-[24px] text-[#FDB056] opacity-0 transition"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                  >
+                    <polyline points="20 6 9 17 4 12" />
+                  </svg>
+                </div>
+
+                <p className="text-sm md:text-base text-[#9AA0A6] leading-snug">
+                  Я согласен(а) с{" "}
+                  <Link
+                    href="/offer"
+                    className="text-gray-300 underline underline-offset-2"
+                  >
+                    офертой рекуррентных платежей
+                  </Link>{" "}
+                  и{" "}
+                  <Link
+                    href="/privacy"
+                    className="text-gray-300 underline underline-offset-2"
+                  >
+                    Политикой конфиденциальности
+                  </Link>
+                  .
+                </p>
+              </label>
 
             {/* Button: при нажатии без флажка выделяется красным */}
-            <div className="flex flex-col gap-3">
-              <div className="flex justify-center sm:justify-start">
+            <div className="flex flex-col gap-3 ">
+              <div className="flex justify-center ">
                 <Button
                   onClick={() => {
                     if (!agreed) {
